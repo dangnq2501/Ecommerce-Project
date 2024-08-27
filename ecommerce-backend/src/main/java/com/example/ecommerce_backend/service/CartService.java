@@ -51,10 +51,17 @@ public class CartService {
         User user = userRepository.findById(userId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         Cart cart = cartRepository.findById(user.getCart_id()) .orElseThrow(() -> new AppException(ErrorCode.CART_NOT_EXISTED));
         CartItem cartItem = cartItemMapper.toCartItem(cartItemRequest);
+
         List<CartItem> cartItems = cart.getCartItems();
         cartItem.setPrice(cartItem.getPrice()*cartItem.getQuantity());
-
+        System.out.println(cartItem.getProduct_id());
+        System.out.println(cartItem.getColor());
+        System.out.println(cartItem.getSize());
+        System.out.println(cartItem.getPrice());
+        System.out.println(cartItem.getRating());
+        System.out.println(cartItem.getQuantity());
         cartItemRepository.save(cartItem);
+        System.out.println(cartItem.getId());
         cartItems.add(cartItem);
         cart.setTotal_price(cart.getTotal_price()+cartItem.getPrice());
         cart.setCartItems(cartItems);

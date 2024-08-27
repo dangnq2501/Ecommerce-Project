@@ -54,7 +54,7 @@ public class OrderService {
         for(int i = 0; i < cartItemList.size(); i ++){
             CartItem cartItem = cartItemList.get(i);
             Product product = productRepository.findById(cartItem.getProduct_id()).orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_EXISTED));
-            if(cartItem.getQuantity() > product.getStockQuantity()){
+            if(cartItem.getQuantity() <= product.getStockQuantity()){
                 product.setStockQuantity(product.getStockQuantity()-cartItem.getQuantity());
                 productRepository.save(product);
             }
