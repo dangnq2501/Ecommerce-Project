@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 public class CartItemRequest {
-    UUID id;
+
     UUID product_id;
     int quantity;
     double price;

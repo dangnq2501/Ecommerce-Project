@@ -19,7 +19,7 @@ import java.util.UUID;
 public class CartController {
     CartService cartService;
 
-    @PostMapping("/user/{userId}/cart/increase/{productId}")
+    @PostMapping("/user/{userId}/cart/increase")
     ApiResponse<CartResponse> increaseCartItem(@PathVariable("userId") UUID userId,
                                           @RequestBody @Valid CartItemRequest cartItemRequest){
         CartResponse cartResponse = cartService.increaseCartItem(userId, cartItemRequest);
@@ -28,7 +28,7 @@ public class CartController {
         return apiResponse;
     }
 
-    @PostMapping("/user/{userId}/cart/add/{productId}")
+    @PostMapping("/user/{userId}/cart/add")
     ApiResponse<CartResponse> addCartItem(@PathVariable("userId") UUID userId,
                                           @RequestBody @Valid CartItemRequest cartItemRequest){
         CartResponse cartResponse = cartService.addCartItem(userId, cartItemRequest);
@@ -36,7 +36,7 @@ public class CartController {
         apiResponse.setResult(cartResponse);
         return apiResponse;
     }
-    @DeleteMapping("/user/{userId}/cart/delete/{productId}")
+    @DeleteMapping("/user/{userId}/cart/delete")
     ApiResponse<CartResponse> deleteCartItem(@PathVariable("userId") UUID userId,
                                              @RequestBody @Valid CartItemRequest cartItemRequest){
         CartResponse cartResponse = cartService.deleteCartItem(userId, cartItemRequest);
@@ -45,7 +45,7 @@ public class CartController {
         return apiResponse;
     }
 
-    @DeleteMapping("/user/{userId}/cart/decrease/{productId}")
+    @DeleteMapping("/user/{userId}/cart/decrease")
     ApiResponse<CartResponse> decreaseCartItem(@PathVariable("userId") UUID userId,
                                                @RequestBody @Valid CartItemRequest cartItemRequest){
         CartResponse cartResponse = cartService.decreaseCartItem(userId, cartItemRequest);

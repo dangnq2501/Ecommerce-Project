@@ -36,22 +36,22 @@ public class CartControllerTest {
 
     }
 
-//    @Test
-//    @WithMockUser(username="admin")
-//    void createValidImage() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(cartRequest);
-//        Mockito.when(cartService.addCartItem(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(cartResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/user/{userId}/cart/add/{productId}")
-//                        .param("productId", "00000000-3838-3137-0000-000000000000")
-//                        .param("userId", "00000000-3838-3137-0000-000000000000")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.pathImage").value("/woman/dress/1/123.jpg"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.pathId").value("/woman/dress/1")
-//                );
-//    }
+    @Test
+    @WithMockUser(username="admin")
+    void createValidImage() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(cartRequest);
+        Mockito.when(cartService.addCartItem(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(cartResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/user/{userId}/cart/add/{productId}")
+                        .param("productId", "00000000-3838-3137-0000-000000000000")
+                        .param("userId", "00000000-3838-3137-0000-000000000000")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.pathImage").value("/woman/dress/1/123.jpg"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.pathId").value("/woman/dress/1")
+                );
+    }
 }

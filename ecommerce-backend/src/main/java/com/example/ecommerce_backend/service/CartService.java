@@ -69,7 +69,7 @@ public class CartService {
         List<CartItem> cartItems = cart.getCartItems();
         for(int i = 0; i < cartItems.size(); i ++){
             CartItem curItem = cartItems.get(i);
-            if(curItem.getProduct_id().equals(addCartItem.getId()) && curItem.getProduct_id().equals(addCartItem.getId()) && curItem.getColor().equals(addCartItem.getColor()) ){
+            if(curItem.getSize().equals(addCartItem.getSize()) && curItem.getProduct_id().equals(addCartItem.getProduct_id()) && curItem.getColor().equals(addCartItem.getColor()) ){
                 curItem.setQuantity(curItem.getQuantity()+1);
                 curItem.setPrice(curItem.getPrice()+product.getPrice());
                 cartItemRepository.save(curItem);
@@ -101,7 +101,7 @@ public class CartService {
         List<CartItem> cartItems = cart.getCartItems();
         for(int i = 0; i < cartItems.size(); i ++){
             CartItem curItem = cartItems.get(i);
-            if(curItem.getProduct_id().equals(addCartItem.getId()) && curItem.getProduct_id().equals(addCartItem.getId()) && curItem.getColor().equals(addCartItem.getColor()) ){
+            if(curItem.getSize().equals(addCartItem.getSize()) && curItem.getProduct_id().equals(addCartItem.getProduct_id()) && curItem.getColor().equals(addCartItem.getColor()) ){
                 cart.setTotal_price(cart.getTotal_price()-curItem.getPrice());
                 cartItems.remove(i);
                 cart.setCartItems(cartItems);
@@ -120,7 +120,7 @@ public class CartService {
         List<CartItem> cartItems = cart.getCartItems();
         for(int i = 0; i < cartItems.size(); i ++){
             CartItem curItem = cartItems.get(i);
-            if(curItem.getProduct_id().equals(addCartItem.getId()) && curItem.getProduct_id().equals(addCartItem.getId()) && curItem.getColor().equals(addCartItem.getColor()) ){
+            if(curItem.getSize().equals(addCartItem.getSize()) && curItem.getProduct_id().equals(addCartItem.getProduct_id()) && curItem.getColor().equals(addCartItem.getColor()) ){
 
                 if(curItem.getQuantity() == 1){
                     cartItems.remove(i);

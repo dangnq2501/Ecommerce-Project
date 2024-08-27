@@ -10,6 +10,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface CartItemMapper {
+    @Mapping(target = "product_id", source = "cartItemRequest.product_id")
     CartItem toCartItem(CartItemRequest cartItemRequest);
     @Mapping(target = "id", source = "cartItem.id")
     CartItemResponse toCartItemResponse(CartItem cartItem);

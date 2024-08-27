@@ -23,9 +23,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+
 
 @Slf4j
 @SpringBootTest
@@ -42,6 +41,7 @@ public class ProductControllerTest {
     private ProductRequest productCreateRequest;
     private ProductRequest productUpdateRequest;
     private ProductResponse productResponse;
+    private List<ProductResponse> productResponseList;
 
     @BeforeEach
     void initData(){
@@ -80,61 +80,76 @@ public class ProductControllerTest {
                 .pathId("xyz")
                 .stockQuantity(10)
                 .build();
+//        productResponseList.add(productResponse);
     }
-//
-//    @Test
-//    @WithMockUser(username="admin")
-//    void createValidProduct() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(productCreateRequest);
-//        Mockito.when(productService.create(ArgumentMatchers.any())).thenReturn(productResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/product")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.name").value("T-Shirt"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.price").value(19.99))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.stockQuantity").value(10))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.description").value("black comfortable shirt"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.pathId").value("xyz"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.category").value("shirt")
-//                );
-//    }
-//
-//    @Test
-//    @WithMockUser(username="admin")
-//    void getAllProduct() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-////        UUID product_id = UUID.fromString("00000000-3838-3137-0000-000000000000");
-//        String content = objectMapper.writeValueAsString(productUpdateRequest);
-//        Mockito.when(productService.update(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(productResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/product")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
-//                );
-//    }
-//
-//    @Test
-//    @WithMockUser(username="admin")
-//    void getProductById() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-////        UUID product_id = UUID.fromString("00000000-3838-3137-0000-000000000000");
-//        String content = objectMapper.writeValueAsString(productUpdateRequest);
-//        Mockito.when(productService.update(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(productResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .get("/product/{id}}")
-//                        .param("id", "00000000-3838-3137-0000-000000000000")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
-//                );
-//    }
-//
+
+    @Test
+    @WithMockUser(username="admin")
+    void createValidProduct() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(productCreateRequest);
+        Mockito.when(productService.create(ArgumentMatchers.any())).thenReturn(productResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/product")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.name").value("T-Shirt"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.price").value(19.99))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.stockQuantity").value(10))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.description").value("black comfortable shirt"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.pathId").value("xyz"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.category").value("shirt")
+                );
+    }
+
+    @Test
+    @WithMockUser(username="admin")
+    void getAllProduct() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+//        UUID product_id = UUID.fromString("00000000-3838-3137-0000-000000000000");
+        String content = objectMapper.writeValueAsString(productUpdateRequest);
+        Mockito.when(productService.getAll()).thenReturn(productResponseList);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/product/getAll")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
+                );
+    }
+
+    @Test
+    @WithMockUser(username="admin")
+    void getProductById() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+//        UUID product_id = UUID.fromString("00000000-3838-3137-0000-000000000000");
+        String content = objectMapper.writeValueAsString(productUpdateRequest);
+        Mockito.when(productService.findById(ArgumentMatchers.any())).thenReturn(productResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/product/getById/00000000-3838-3137-0000-000000000000")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
+                );
+    }
+
+    @Test
+    @WithMockUser(username="admin")
+    void getProductByName() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(productUpdateRequest);
+        Mockito.when(productService.findByName(ArgumentMatchers.any())).thenReturn(productResponseList);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/product/getByName/brown leather jackets")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
+                );
+    }
+
 
 }

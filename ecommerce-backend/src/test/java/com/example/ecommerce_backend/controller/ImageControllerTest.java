@@ -75,20 +75,20 @@ public class ImageControllerTest {
                 .build();
     }
 
-//    @Test
-//    @WithMockUser(username="admin")
-//    void createValidImage() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(imageRequest);
-//        Mockito.when(imageService.create(ArgumentMatchers.any())).thenReturn(imageResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/image")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.pathImage").value("/woman/dress/1/123.jpg"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.pathId").value("/woman/dress/1")
-//                );
-//    }
+    @Test
+    @WithMockUser(username="admin")
+    void createValidImage() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(imageRequest);
+        Mockito.when(imageService.create(ArgumentMatchers.any())).thenReturn(imageResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/image")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.pathImage").value("/woman/dress/1/123.jpg"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.pathId").value("/woman/dress/1")
+                );
+    }
 }

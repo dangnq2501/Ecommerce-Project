@@ -21,12 +21,11 @@ public class CartItemMapperImpl implements CartItemMapper {
 
         CartItem.CartItemBuilder cartItem = CartItem.builder();
 
-        cartItem.id( cartItemRequest.getId() );
+        cartItem.product_id( cartItemRequest.getProduct_id() );
         cartItem.price( cartItemRequest.getPrice() );
         cartItem.color( cartItemRequest.getColor() );
         cartItem.size( cartItemRequest.getSize() );
         cartItem.quantity( cartItemRequest.getQuantity() );
-        cartItem.product_id( cartItemRequest.getProduct_id() );
         cartItem.rating( cartItemRequest.getRating() );
 
         return cartItem.build();

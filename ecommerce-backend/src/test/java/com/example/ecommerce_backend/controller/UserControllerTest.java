@@ -92,95 +92,108 @@ public class UserControllerTest {
                 .phone("0912345678")
                 .build();
     }
-//
-//    @Test
-//    void createValidUser() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(userCreationRequest);
-//        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                .post("/user")
-//                .content(content)
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.username").value("quydang"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.email").value("quydang@gmail.com"))
-//                .andExpect(MockMvcResultMatchers.jsonPath("result.phone").value("0912345678")
-//                );
-//    }
-//
-//    @Test
-//    void createUserInvalidPassword() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(userCreationRequestInvalidPassword);
-//        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/user")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("202"));
-//    }
-//
-//    @Test
-//    void createUserInvalidUsername() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(userCreationRequestInvalidUsername);
-//        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/user")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("201"));
-//    }
-//
-//    @Test
-//    @WithMockUser(username="quydang", password = "passwrod")
-//    void updateUserValid() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(userUpdateRequest);
-//        Mockito.when(userService.updateUser(ArgumentMatchers.any())).thenReturn(userResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .put("/user")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"));
-//    }
-//
-//    @Test
-//    @WithMockUser(username="admin")
-//    void getAllUser() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(adminCreationRequest);
-//        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .get("/user/getAll")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
-//                );
-//    }
-//
-//    @Test
-//    @WithMockUser(username="quydang")
-//    void getMyInfo() throws Exception{
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String content = objectMapper.writeValueAsString(userCreationRequest);
-//        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .get("/user/my-info")
-//                        .content(content)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
-//                );
-//    }
-//
-//
+
+    @Test
+    void createValidUser() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(userCreationRequest);
+        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/user")
+                .content(content)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.username").value("quydang"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.email").value("quydang@gmail.com"))
+                .andExpect(MockMvcResultMatchers.jsonPath("result.phone").value("0912345678")
+                );
+    }
+
+    @Test
+    void createUserInvalidPassword() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(userCreationRequestInvalidPassword);
+        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/user")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("202"));
+    }
+
+    @Test
+    void createUserInvalidUsername() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(userCreationRequestInvalidUsername);
+        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/user")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("201"));
+    }
+
+    @Test
+    @WithMockUser(username="quydang", password = "passwrod")
+    void updateUserValid() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(userUpdateRequest);
+        Mockito.when(userService.updateUser(ArgumentMatchers.any())).thenReturn(userResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/user")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000"));
+    }
+
+    @Test
+    @WithMockUser(username="admin")
+    void getAllUser() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(adminCreationRequest);
+        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/user/getAll")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
+                );
+    }
+
+    @Test
+    @WithMockUser(username="quydang")
+    void getMyInfo() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(userCreationRequest);
+        Mockito.when(userService.createUser(ArgumentMatchers.any())).thenReturn(userResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/user/my-info")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
+                );
+    }
+
+    @Test
+    @WithMockUser(username="quydang")
+    void getById() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String content = objectMapper.writeValueAsString(userCreationRequest);
+        Mockito.when(userService.getUserById(ArgumentMatchers.any())).thenReturn(userResponse);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/user/63636431-3638-3532-2d34-663638000000")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("code").value("1000")
+                );
+    }
 
 
 
