@@ -41,8 +41,6 @@ public class CartControllerTest {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private CartItemRepository cartItemRepository;
 
     @MockBean
     private CartService cartService;
