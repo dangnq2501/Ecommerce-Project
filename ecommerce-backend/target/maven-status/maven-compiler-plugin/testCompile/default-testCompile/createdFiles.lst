@@ -1,0 +1,6 @@
+com/example/ecommerce_backend/EcommerceBackendApplicationTests.class
+com/example/ecommerce_backend/controller/CartControllerTest.class
+com/example/ecommerce_backend/controller/ProductControllerTest.class
+com/example/ecommerce_backend/controller/ImageControllerTest.class
+com/example/ecommerce_backend/controller/UserControllerTest.class
+com/example/ecommerce_backend/controller/OrderControllerTest.class
